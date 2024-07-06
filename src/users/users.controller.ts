@@ -15,12 +15,12 @@ import {
 import { CreateUserDto } from './dto/create.user.dto';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update.user.dto';
-import { Serialize } from 'src/interceptors/serialize.intercepter';
+import { Serialize } from '../interceptors/serialize.intercepter';
 import { UserDto } from './dto/user.dto';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/user.deccorators';
 import { User } from './user.entity';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -50,7 +50,7 @@ export class UsersController {
   }
 
   @Post('/signin')
-  async signIn(@Body() body: CreateUserDto, @Session() session: any) {
+  async signin(@Body() body: CreateUserDto, @Session() session: any) {
     const user = await this.authService.signin(body.email, body.password);
     session.userId = user.id;
     return user;
