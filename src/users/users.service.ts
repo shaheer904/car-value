@@ -25,18 +25,18 @@ export class UsersService {
 
   async update(id: number, attrs: Partial<User>) {
     const user = await this.repo.findOne({ where: { id } });
-    console.log(user)
+    // console.log(user)
     if (!user) {
       throw new NotFoundException('User not found');
     }
      Object.assign(user, attrs);
-    console.log(user)
+    // console.log(user)
     return this.repo.save(user);
   }
 
   async remove(id: number) {
     const user = await this.repo.findOne({ where: { id } });
-    console.log(user)
+    // console.log(user)
 
     if (!user) {
       throw new NotFoundException('User not found');
